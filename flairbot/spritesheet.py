@@ -78,7 +78,8 @@ def load_image(path: Path):
     """
     try:
         with Image.open(path) as image:
-            # Trim of any transparent whitespace
+            # Convert to RGBa to remove color from transparent pixels
+            image = image.convert("RGBa")
             bbox = image.getbbox()
             cropped_image = image.crop(bbox)
             return cropped_image
