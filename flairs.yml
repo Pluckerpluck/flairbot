@@ -1,8 +1,16 @@
-
 # These defaults don't actually do anything yet
 # But they do show what can be overridden
 defaults:
-  height: 30
+  height: 30  # The default height of each flair
+  active: True  # Whether this flair should be usable on reddit
+  mod-only: False  # Whether this flair is restricted to mods
+
+# This section is used to define combo flairs
+# Combo flairs default to mod-only
+combos:
+  ValCD:
+    - DVal
+    - CVal
 
 # Override values for specific flairs here
 overrides:
@@ -32,5 +40,9 @@ overrides:
     height: 33
   RagnirTheCovetous:
     height: 28
+  CVal:
+    active: False
+  DVal:
+    active: False
   ValCD:
     height: 33
