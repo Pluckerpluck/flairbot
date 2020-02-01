@@ -266,6 +266,7 @@ if __name__ == "__main__":
     output, css = spritesheet.build()
 
     # Output to dist folder
+    Path("dist").mkdir(exist_ok=True)
     output.save("dist/spritesheet.png")
     with open("dist/spritesheet.css", "w") as f:
         f.write(css)
