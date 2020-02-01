@@ -1,4 +1,36 @@
-# This config is for overrides to the default flair system
+
+# These defaults don't actually do anything yet
+# But they do show what can be overridden
+defaults:
+  height: 30
+
+# Override values for specific flairs here
 overrides:
-  WipeoutNix:
-    height: 50
+  Barbara:
+    height: 33
+  BlackKnight:
+    height: 33
+  Enchantress:
+    height: 33
+  Nimue:
+    height: 33
+  Orb:
+    height: 27
+  PlagueKnight:
+    height: 27
+  Ranno:
+    height: 25
+  SoccerBall:
+    height: 28
+  Thor:
+    height: 33
+  Ulgrim-Apprentice:
+    height: 33
+  Val-Chimera:
+    height: 33
+  Val-Dragonslayer:
+    height: 33
+  RagnirTheCovetous:
+    height: 28
+  ValCD:
+    height: 33
