@@ -1,0 +1,4 @@
+# This config is for overrides to the default flair system
+overrides:
+  WipeoutNix:
+    height: 50
