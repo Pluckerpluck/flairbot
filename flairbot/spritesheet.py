@@ -258,6 +258,10 @@ if __name__ == "__main__":
     files = Path(FLAIR_DIR).glob(('**/*.png'))
     flair_names = set(file.name[:-4] for file in files if file.is_file())
 
+    # Sort to produce stable output
+    flair_names = list(flair_names)
+    flair_names.sort()
+
     spritesheet = Spritesheet()
 
     for name in flair_names:
