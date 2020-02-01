@@ -168,7 +168,7 @@ class Flair:
             return None
 
         # Finally load and process the image
-        return load_image(path)
+        return load_image(target_image)
 
 
 class Spritesheet:
