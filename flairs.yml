@@ -1,16 +1,16 @@
 # These defaults don't actually do anything yet
 # But they do show what can be overridden
 defaults:
+  active: true  # Whether this flair should be usable on reddit
   height: 30  # The default height of each flair
-  active: True  # Whether this flair should be usable on reddit
-  mod-only: False  # Whether this flair is restricted to mods
+  mod-only: false  # Whether this flair is restricted to mods
 
 # This section is used to define combo flairs
 # Combo flairs default to mod-only
 combos:
   ValCD:
-    - DVal
-    - CVal
+    - Val-Chimera
+    - Val-Dragonslayer
 
 # Override values for specific flairs here
 overrides:
@@ -20,12 +20,16 @@ overrides:
     height: 33
   Enchantress:
     height: 33
+  LinFei-Zhulong:
+    mod-only: true
   Nimue:
     height: 33
   Orb:
     height: 27
   PlagueKnight:
     height: 27
+  RagnirTheCovetous:
+    height: 28
   Ranno:
     height: 25
   SoccerBall:
@@ -36,13 +40,9 @@ overrides:
     height: 33
   Val-Chimera:
     height: 33
+    mod-only: true
   Val-Dragonslayer:
     height: 33
-  RagnirTheCovetous:
-    height: 28
-  CVal:
-    active: False
-  DVal:
-    active: False
+    mod-only: true
   ValCD:
     height: 33
