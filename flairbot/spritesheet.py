@@ -172,6 +172,44 @@ class Flair:
         return load_image(target_image)
 
 
+class ComboFlair:
+    def __init__(self, name, flairs):
+        self.name = name
+
+        logger.info(
+            "Building combo flair: %s - %s" % (self.name, [x.name for x in flairs])
+        )
+
+        self._components = flairs
+
+        # Validate all component flairs exists
+        if any(x.old_reddit_image is None for x in self._components):
+            raise RuntimeError("Missing one of: %s" % str(self._components))
+
+        self.old_reddit_image = self.generate_old_reddit_image()
+        self.new_reddit_image = None
+
+    def generate_old_reddit_image(self):
+        images = [x.old_reddit_image for x in self._components]
+
+        PADDING = 1
+
+        # Add 1 pixel padding
+        width = sum(image.width + PADDING for image in images) - PADDING
+        height = max(image.height for image in images)
+
+        combo_flair = Image.new("RGBA", (int(width), int(height)))
+
+        x_pos = 0
+        for image in images:
+            combo_flair.paste(image, (x_pos, 0))
+
+            # Increment for the next image
+            x_pos += image.width + PADDING
+
+        return combo_flair
+
+
 class Spritesheet:
     """A class to facilitate the generation a spritesheets of flairs.
 
@@ -183,6 +221,7 @@ class Spritesheet:
     PADDING: int
         The padding to place between sprites in the spritesheet
     """
+
     PADDING = 3
 
     def __init__(self):
@@ -216,7 +255,7 @@ class Spritesheet:
         )
 
         # Create the blank spritesheet to add the images to
-        spritesheet = Image.new("RGBA",(int(total_width), int(height)))
+        spritesheet = Image.new("RGBA", (int(total_width), int(height)))
 
         # Start places the sprites into the spritesheet
         origins = {}
@@ -242,7 +281,7 @@ class Spritesheet:
                 f"min-width: {flair.old_reddit_image.width}px;",
                 f"height: {flair.old_reddit_image.height}px;",
                 f"background-position-x: -{x_pos}px;",
-                "}"
+                "}",
             ]
 
             # Add the element to the declarations
@@ -252,20 +291,29 @@ class Spritesheet:
 
         return spritesheet, css
 
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     # Find all flair names from png files, ignore duplicate names
-    files = Path(FLAIR_DIR).glob(('**/*.png'))
+    files = Path(FLAIR_DIR).glob(("**/*.png"))
     flair_names = set(file.name[:-4] for file in files if file.is_file())
 
-    # Sort to produce stable output
-    flair_names = list(flair_names)
-    flair_names.sort()
-
-    spritesheet = Spritesheet()
-
+    flairs = {}
+    # Build up the single image flairs (order is maintained for >= 3.7)
     for name in flair_names:
-        flair = Flair(name)
+        flairs[name] = Flair(name)
+
+    for name, components in config.get_combo_flairs().items():
+        sub_flairs = [flairs[x] for x in components]
+        flairs[name] = ComboFlair(name, sub_flairs)
+
+    # Generate a sorted list for stable output
+    all_flairs = list(flairs.values())
+    all_flairs.sort(key=lambda x: x.name)
+
+    # Create the spritesheet
+    spritesheet = Spritesheet()
+    for flair in all_flairs:
         spritesheet.add_flair(flair)
 
     output, css = spritesheet.build()

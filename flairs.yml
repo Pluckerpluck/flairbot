@@ -11,6 +11,18 @@ combos:
   ValCD:
     - Val-Chimera
     - Val-Dragonslayer
+  WipeoutYumiko:
+    - LilYumiko
+    - WipeoutNix
+  MetafangEmber:
+    - MetadevEmber
+    - FangwildFawnEmber
+  RagnirTheWerebat:
+    - RagnirTheCovetous
+    - WerebatRagnir
+  NorthWindCassidy:
+    - NorthWindMordex
+    - HighNoonCassidy
 
 # Override values for specific flairs here
 overrides:
