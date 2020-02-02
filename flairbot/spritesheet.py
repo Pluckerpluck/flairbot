@@ -277,7 +277,7 @@ class Spritesheet:
             x_pos = origins[flair.name]
 
             element = [
-                f".flair-{name}, a[href='#/{name}'] {{",
+                f".flair-{flair.name}, a[href='#/{flair.name}'] {{",
                 f"min-width: {flair.old_reddit_image.width}px;",
                 f"height: {flair.old_reddit_image.height}px;",
                 f"background-position-x: -{x_pos}px;",
