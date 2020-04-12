@@ -31,3 +31,62 @@ And finally running the code:
 ```
 
 The generate files can be found in `./dist/`
+
+## Needed flairs
+
+* Artemis
+* Axe
+* Blasters
+* BlueMammoth
+* Bomb
+* Bow
+* Brawlball
+* BrawlLeague
+* Cannon
+* Caspian
+* Cross
+* DiamondV3
+* DoDNai (This is missing in new flairs)
+* Gauntlets
+* Hammer
+* Horn
+* Isaiah
+* Jiro
+* Katars
+* Kaya
+* Lance
+* LinFei
+* Maceball
+* Mine
+* Mirage
+* Mordex
+* Nix
+* ParticipationV3
+* PlatinumV3
+* Ragnir
+* Scythe
+* Sidra
+* SK-Ammit
+* SK-Boomer
+* SK-Cheddar
+* SK-Cogsworth
+* SK-Craig
+* SK-Drake
+* SK-Firehawk
+* SK-Grimm
+* SK-Knight
+* SK-MammothFan
+* SK-MammothSuperfan
+* SK-Onisan
+* SK-PS4
+* SK-Shade
+* SK-Wendingo
+* SK-Zoid
+* Spear
+* Stalker
+* Sword
+* Val
+* WuShang
+* Xull
+* Yumiko
+* Zariel
