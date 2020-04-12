@@ -23,6 +23,9 @@ combos:
   NorthWindCassidy:
     - NorthWindMordex
     - HighNoonCassidy
+  DogDaysTeros:
+    - DogDaysMordex
+    - YeteeTeros
 
 # Override values for specific flairs here
 overrides:
