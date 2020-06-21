@@ -26,6 +26,9 @@ combos:
   DogDaysTeros:
     - DogDaysMordex
     - YeteeTeros
+  CookoutVolkov:
+    - CookoutIsaiah
+    - HVolkov
 
 # Override values for specific flairs here
 overrides:
