@@ -272,6 +272,10 @@ class Spritesheet:
 
         # Spritesheet is now done, lets generate the CSS
         declarations = [BASE_CSS]
+
+        # Hack declarations: (Used while old reddit flairs are a thing)
+        hack_declarations = []
+
         for flair in old_flairs:
             # Lookup their position in the spritesheet
             x_pos = origins[flair.name]
@@ -284,12 +288,25 @@ class Spritesheet:
                 "}",
             ]
 
+            hack_element = [
+                f".flair-{flair.name}, a[href='#/{flair.name}'] {{",
+                f"min-width: {flair.old_reddit_image.width}px;",
+                f"height: {flair.old_reddit_image.height}px;",
+                f"background-position: -{x_pos}px 0;",
+                ";background-image:url(%%S%%)"
+                "}",
+            ]
+
             # Add the element to the declarations
             declarations.extend(element)
+            hack_declarations.extend(hack_element)
+
+
 
         css = compress("\n".join(declarations))
+        hack_css = compress("\n".join(hack_declarations))
 
-        return spritesheet, css
+        return spritesheet, css, hack_css
 
 
 if __name__ == "__main__":
@@ -316,10 +333,13 @@ if __name__ == "__main__":
     for flair in all_flairs:
         spritesheet.add_flair(flair)
 
-    output, css = spritesheet.build()
+    output, css, hack_css = spritesheet.build()
 
     # Output to dist folder
     Path("dist").mkdir(exist_ok=True)
     output.save("dist/spritesheet.png")
     with open("dist/spritesheet.css", "w") as f:
         f.write(css)
+
+    with open("dist/hack_spritesheet.css", "w") as f:
+        f.write(hack_css)
